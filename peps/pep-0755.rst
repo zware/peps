@@ -20,8 +20,8 @@ and presents the result of two informal Discourse polls:
   <https://discuss.python.org/t/what-do-you-consider-pain-points-of-todays-build-system/31815>`__
 
 
-Rationale
-=========
+Motivation
+==========
 
 The current build system has been criticized by contributors and core developers,
 and the idea of replacing it surfaces every now and then.
