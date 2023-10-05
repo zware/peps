@@ -53,11 +53,10 @@ we asked:
    [...] what do you consider pain points of todays build system?
 
 The desire of a unified build system was mentioned several times.
-This need was accompanied by the pain point that we currently have _three_ build systems:
+This need was accompanied by the pain point that we currently have _two_ build systems:
 
 1. A Windows build system
-2. The GNU Autoconf/Make build system
-3. The docs build system
+2. A GNU Autoconf/Make build system
 
 It is hard to keep the Windows and \*nix build systems in sync.
 Windows developers often find the GNU build system incomprehensible;
@@ -115,23 +114,15 @@ Keeping the Makefile compatible with both BSD and GNU Make is a pain point.
 
 Few developers, core devs included, have deep M4 and GNU Autoconf knowledge,
 and it is hard to find contributors and new core developers with these skills.
-Also, GNU Autoconf seems to me a fragile project;
-there are no regular releases, and it has few active core developers.
+Also, GNU Autoconf has no regular releases, and it has few active core developers.
 
 
 The Windows Build System
 ------------------------
 
-The Windows build consists of a collection of .xml and .bat files that was generated using VSCode many years ago,
-and is now manually updated whenever needed.
-
-*TODO: write more stuff here*
-
-
-The ``Docs/`` Build
--------------------
-
-*TODO: write something here*
+The Windows build consists of a collection of :file:`.xml` and :file:`.bat`
+files that was originally generated using VSCode,
+and are now manually updated whenever needed.
 
 
 Use Cases
@@ -172,8 +163,6 @@ A new build system may impose new bootstrapping needs;
 this will affect how easy it will be to port Python to new architectures and platforms.
 
 Good documentation will help mitigate issues that arise.
-
-*PERHAPS THIS SECTION BELONGS TO THE FOLLOW-UP PEP, INSTEAD OF HERE*
 
 
 Copyright
