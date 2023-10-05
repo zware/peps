@@ -1,6 +1,7 @@
 PEP: 755
 Title: Status quo of the CPython 3.12 build system
-Author: Erlend Egeberg Aasland <erlend@python.org>, Zachary Ware <zachary.ware@gmail.com>
+Author: Erlend Egeberg Aasland <erlend@python.org>,
+        Zachary Ware <zachary.ware@gmail.com>
 Status: Draft
 Type: Informational
 Content-Type: text/x-rst
@@ -11,20 +12,15 @@ Python-Version: 3.12
 Abstract
 ========
 
-This PEP describes the CPython 3.12 build system,
-and presents the result of two informal Discourse polls:
-
-- `What do you want to see in tomorrow's CPython build system?
-  <https://discuss.python.org/t/what-do-you-want-to-see-in-tomorrow-s-cpython-build-system/28197>`__
-- `What do you consider pain points of today's build system?
-  <https://discuss.python.org/t/what-do-you-consider-pain-points-of-todays-build-system/31815>`__
+This PEP describes the pains core developers have with the CPython build system,
+and their desired goals and wishes for the future CPython build system.
 
 
 Motivation
 ==========
 
-The current build system has been criticized by contributors and core developers,
-and the idea of replacing it surfaces every now and then.
+The current build system has been criticized by contributors and core
+developers, and the idea of replacing it surfaces every now and then.
 If we are to make large scale changes to the current build system,
 we need to know more about its pros and cons.
 
@@ -32,9 +28,9 @@ This PEP intends to document the current build system;
 how is it perceived by contributors and core developers,
 and what kind of build system they envision in the future.
 
-This PEP can be used as input to decide whether to improve the existing build system,
-rewrite the existing build system,
-or implement a completely new build system.
+This PEP can be used as input to decide whether to improve the existing build
+system, rewrite the existing build system, or implement a completely new build
+system.
 
 
 Poll Results
@@ -44,7 +40,9 @@ Poll Results
 <https://discuss.python.org/t/what-do-you-want-to-see-in-tomorrow-s-cpython-build-system/28197>`__,
 we asked:
 
-   Hypothetically, if we had to recreate the build process from just the available code today, which qualities and features would we want to see in tomorrow’s new build system?
+   Hypothetically, if we had to recreate the build process from just the
+   available code today, which qualities and features would we want to see in
+   tomorrow’s new build system?
 
 `August 17, 2023
 <https://discuss.python.org/t/what-do-you-consider-pain-points-of-todays-build-system/31815>`__,
@@ -53,7 +51,8 @@ we asked:
    [...] what do you consider pain points of todays build system?
 
 The desire of a unified build system was mentioned several times.
-This need was accompanied by the pain point that we currently have _two_ build systems:
+This need was accompanied by the pain point that we currently have _two_ build
+systems:
 
 1. A Windows build system
 2. A GNU Autoconf/Make build system
@@ -64,29 +63,34 @@ Windows developers often find the GNU build system incomprehensible;
 Many developers simply avoid the build system completely.
 
 Also mentioned multiple times, was the desire of correct incremental builds.
-This need was accompanied by the observation that today's build system does _not_ guarantee this.
+This need was accompanied by the observation that today's build system
+does _not_ guarantee this.
 Related, was the desire of fast incremental builds and deterministic builds.
 The latter is not guaranteed by the current build system.
 Deterministic builds imply the ability to easily constrain dependencies,
 a need that was also mentioned.
 
-Several people also mentioned the desire to support specific use cases, such as cross-compilation support,
+Several people also mentioned the desire to support specific use cases,
+such as cross-compilation support,
 being easily reusable and extendable by 3rd parties who build from source,
 and being able to produce an installed-shape layout.
 
-Ease of maintenance and supporting all PEP-11 platforms was also mentioned as end goals.
+Ease of maintenance and supporting all PEP-11 platforms was also mentioned
+as end goals.
 
 Some particular pain points was mentioned:
 
 * the configure step is slow and full of serialized checks
 * configure is re-run seemingly at random
 * generated files must be updated manually
-* some code generation scripts in ``Tools/`` duplicate data defined in the stdlib
+* some code generation scripts in ``Tools/`` duplicate data defined in the
+  standard library
 
-The current build system contains decades of cruft that may or may not still be relevant to anyone.
+The current build system contains decades of cruft that may or may not still
+be relevant to anyone.
 
-Last, we want a build system where developers and contributors are comfortable with making and reviewing changes to it,
-in years to come.
+Last, we want a build system where developers and contributors are comfortable
+with making and reviewing changes to it, in years to come.
 This implies some needs:
 
 * good quality documentation
@@ -100,21 +104,25 @@ The Current Build System
 GNU Autoconf and Make
 ---------------------
 
-:file:`Makefile.pre.in` and :file:`configure.ac` make up most of the GNU Autoconf/Make build system.
+:file:`Makefile.pre.in` and :file:`configure.ac` make up most of
+the GNU Autoconf/Make build system.
 GNU Autoconf is based on the M4 macro language;
 it takes care of the configure step,
 which implies detecting 3rd party dependencies,
 compiler and linker traits, platform specifics, etc.
-It also provides a command-line interface so the user can enable and disable various features.
+It also provides a command-line interface so the user can
+enable and disable various features.
 
-At the end of the configure step, the :file:`pyconfig.h` header file and the Makefile is generated.
+At the end of the configure step, the :file:`pyconfig.h` header file
+and the Makefile is generated.
 The Makefile file contains a set of hand-written targets and build dependencies,
 and takes care of the build and test use cases.
 Keeping the Makefile compatible with both BSD and GNU Make is a pain point.
 
 Few developers, core devs included, have deep M4 and GNU Autoconf knowledge,
 and it is hard to find contributors and new core developers with these skills.
-Also, GNU Autoconf has no regular releases, and it has few active core developers.
+Also, GNU Autoconf has no regular releases,
+and it has few active core developers.
 
 
 The Windows Build System
@@ -140,13 +148,15 @@ Currently, the CI is implemented using GitHub Actions,
 so for convenience, the build system should be supported by all GitHub runners.
 
 For core developers, a common use cases are _reconfigure_ and _rebuild_;
-this was reflected in the poll responses: we want fast and correct incremental builds.
+this was reflected in the poll responses:
+we want fast and correct incremental builds.
 
 
 Build Issues in the Bug Tracker
 ===============================
 
-As of 2023-10-04, there are 266 open and 3566 closed issues with the ``build`` label on our bug tracker.
+As of 2023-10-04, there are 266 open and 3566 closed issues with
+the ``build`` label on our bug tracker.
 Of these, 69 open and 324 closed issues are marked as feature requests,
 and 76 open and 467 closed issues are marked as bugs.
 Grouping by platform, 31 open and 368 closed are Windows specific issues;
