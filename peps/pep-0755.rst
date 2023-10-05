@@ -1,5 +1,5 @@
 PEP: 755
-Title: Status quo of the build system as of CPython 3.12
+Title: Status quo of the CPython 3.12 build system
 Author: Erlend Egeberg Aasland <erlend@python.org>, Zachary Ware <zachary.ware@gmail.com>
 Status: Draft
 Type: Informational
