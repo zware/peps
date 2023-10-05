@@ -153,18 +153,6 @@ Grouping by platform, 31 open and 368 closed are Windows specific issues;
 19 open and 204 closed are macOS specific issues.
 
 
-Backwards Compatibility
-=======================
-
-Large scale changes to the build system, either by rewriting parts of it,
-or completely reimplementing it has several backwards compatibility issues.
-Minor changes in dependency detection for extension modules is expected.
-A new build system may impose new bootstrapping needs;
-this will affect how easy it will be to port Python to new architectures and platforms.
-
-Good documentation will help mitigate issues that arise.
-
-
 Copyright
 =========
 
