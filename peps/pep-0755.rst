@@ -36,17 +36,13 @@ system.
 Poll Results
 ============
 
-`June 20, 2023
-<https://discuss.python.org/t/what-do-you-want-to-see-in-tomorrow-s-cpython-build-system/28197>`__,
-we asked:
+`June 20, 2023 <https://discuss.python.org/t/28197>`__, we asked:
 
    Hypothetically, if we had to recreate the build process from just the
    available code today, which qualities and features would we want to see in
    tomorrow’s new build system?
 
-`August 17, 2023
-<https://discuss.python.org/t/what-do-you-consider-pain-points-of-todays-build-system/31815>`__,
-we asked:
+`August 17, 2023 <https://discuss.python.org/t/31815>`__, we asked:
 
    [...] what do you consider pain points of todays build system?
 
