@@ -1,7 +1,7 @@
 PEP: 755
 Title: Status quo of the CPython 3.12 build system
 Author: Erlend Egeberg Aasland <erlend@python.org>,
-        Zachary Ware <zachary.ware@gmail.com>
+        Zachary Ware <zach@python.org>
 Status: Draft
 Type: Informational
 Content-Type: text/x-rst
