@@ -46,7 +46,7 @@ Poll Results
 
    [...] what do you consider pain points of todays build system?
 
-The desire of a unified build system was mentioned several times.
+The desire for a unified build system was mentioned several times.
 This need was accompanied by the pain point that we currently have _two_ build
 systems:
 
@@ -58,10 +58,10 @@ Windows developers often find the GNU build system incomprehensible;
 \*nix developers find the Windows build system incomprehensible.
 Many developers simply avoid the build system completely.
 
-Also mentioned multiple times, was the desire of correct incremental builds.
+Also mentioned multiple times was the desire for correct incremental builds.
 This need was accompanied by the observation that today's build system
 does _not_ guarantee this.
-Related, was the desire of fast incremental builds and deterministic builds.
+Related was the desire for fast incremental builds and deterministic builds.
 The latter is not guaranteed by the current build system.
 Deterministic builds imply the ability to easily constrain dependencies,
 a need that was also mentioned.
@@ -90,7 +90,7 @@ with making and reviewing changes to it, in years to come.
 This implies some needs:
 
 * good quality documentation
-* support, for example in form of an active community
+* support, for example in the form of an active community
 * a build system that is being actively developed
 
 
@@ -104,13 +104,13 @@ GNU Autoconf and Make
 the GNU Autoconf/Make build system.
 GNU Autoconf is based on the M4 macro language;
 it takes care of the configure step,
-which implies detecting 3rd party dependencies,
+which includes detecting 3rd party dependencies,
 compiler and linker traits, platform specifics, etc.
 It also provides a command-line interface so the user can
 enable and disable various features.
 
 At the end of the configure step, the :file:`pyconfig.h` header file
-and the Makefile is generated.
+and the Makefile are generated.
 The Makefile file contains a set of hand-written targets and build dependencies,
 and takes care of the build and test use cases.
 Keeping the Makefile compatible with both BSD and GNU Make is a pain point.
@@ -147,9 +147,9 @@ as mentioned in the poll responses, that the build system is fast.
 Currently, the CI is implemented using GitHub Actions,
 so for convenience, the build system should be supported by all GitHub runners.
 
-For core developers, a common use cases are _reconfigure_ and _rebuild_;
-this was reflected in the poll responses:
-we want fast and correct incremental builds.
+For core developers, a common use case is _reconfigure_ and _rebuild_:
+this was reflected in the poll responses
+desiring fast and correct incremental builds.
 
 
 Build Issues in the Bug Tracker
