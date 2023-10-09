@@ -13,10 +13,8 @@ Abstract
 ========
 
 This PEP describes the pains core developers have with the CPython build system,
-and their desired goals and wishes for the future CPython build system.
+and their desired goals and wishes for its future.
 
-.. XXX?
-   ...for its future.
 
 
 Motivation
@@ -25,10 +23,7 @@ Motivation
 The current build system has been criticized by contributors and core
 developers, and the idea of replacing it surfaces every now and then.
 If we are to make large scale changes to the current build system,
-we need to know more about its pros and cons.
-
-.. XXX?
-   ...need to be sure we know what we're getting into.
+we need to be sure we know what we're getting into.
 
 This PEP intends to document the current build system;
 how is it perceived by contributors and core developers,
